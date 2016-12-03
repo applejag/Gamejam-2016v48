@@ -19,7 +19,7 @@ public class CharacterMovement : MonoBehaviour {
 
 	[System.NonSerialized]
 	public float angleDelta;
-
+	
 	void Awake() {
 		body = GetComponent<Rigidbody> ();
 	}
