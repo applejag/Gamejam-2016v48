@@ -1,0 +1,142 @@
+fileFormatVersion: 2
+guid: 87a85835acf645a4e921f2fbcb45875b
+timeCreated: 1480802993
+licenseType: Free
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: chest_CTRL
+    100002: chest_j
+    100004: global_CTRL
+    100006: head_CTRL
+    100008: head_END
+    100010: head_j
+    100012: //RootNode
+    100014: l_foot_j
+    100016: l_hip_j
+    100018: l_knee_j
+    100020: l_toe_END
+    100022: l_toe_j
+    100024: mesh_kiwi
+    100026: neck_CTRL
+    100028: neck_j
+    100030: neck_middle_CTRL
+    100032: neck_middle_j
+    100034: pelvis_CTRL
+    100036: pelvis_j
+    100038: polySurface1
+    100040: polySurface2
+    100042: polySurface3
+    100044: r_foot_j
+    100046: r_hip_j
+    100048: r_knee_j
+    100050: r_toe_END
+    100052: r_toe_j
+    100054: root_j
+    100056: spine_CTRL
+    100058: spine_j
+    100060: transform1
+    100062: transform2
+    100064: transform3
+    100066: transform4
+    400000: chest_CTRL
+    400002: chest_j
+    400004: global_CTRL
+    400006: head_CTRL
+    400008: head_END
+    400010: head_j
+    400012: //RootNode
+    400014: l_foot_j
+    400016: l_hip_j
+    400018: l_knee_j
+    400020: l_toe_END
+    400022: l_toe_j
+    400024: mesh_kiwi
+    400026: neck_CTRL
+    400028: neck_j
+    400030: neck_middle_CTRL
+    400032: neck_middle_j
+    400034: pelvis_CTRL
+    400036: pelvis_j
+    400038: polySurface1
+    400040: polySurface2
+    400042: polySurface3
+    400044: r_foot_j
+    400046: r_hip_j
+    400048: r_knee_j
+    400050: r_toe_END
+    400052: r_toe_j
+    400054: root_j
+    400056: spine_CTRL
+    400058: spine_j
+    400060: transform1
+    400062: transform2
+    400064: transform3
+    400066: transform4
+    4300000: mesh_kiwi
+    9500000: //RootNode
+    13700000: mesh_kiwi
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 2
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 100
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

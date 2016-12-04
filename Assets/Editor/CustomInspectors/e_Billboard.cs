@@ -13,6 +13,7 @@ public class e_Billboard : Editor {
 		var cam = serializedObject.FindProperty("cam");
 		var useMainCam = serializedObject.FindProperty("useMainCam");
 		var execureInEditMode = serializedObject.FindProperty("executeInEditMode");
+		var tilt = serializedObject.FindProperty("tilt");
 
 		if (Camera.main != null)
 			cam.objectReferenceValue = Camera.main;
@@ -23,6 +24,7 @@ public class e_Billboard : Editor {
 
 		EditorGUILayout.PropertyField(useMainCam);
 		EditorGUILayout.PropertyField(execureInEditMode);
+		EditorGUILayout.PropertyField(tilt);
 
 		serializedObject.ApplyModifiedProperties();
 	}

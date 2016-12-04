@@ -126,5 +126,25 @@ namespace ExtensionMethods {
 		public static float MaxValue(this Vector3 vector) {
 			return Mathf.Max(vector.x, vector.y, vector.z);
 		}
+		public static float MaxValue(this Vector2 vector) {
+			return Mathf.Max(vector.x, vector.y);
+		}
+
+		public static float MinxValue(this Vector3 vector) {
+			return Mathf.Min(vector.x, vector.y, vector.z);
+		}
+		public static float MinxValue(this Vector2 vector) {
+			return Mathf.Min(vector.x, vector.y);
+		}
+
+		public static Vector3 EulerToVector(this Vector3 euler) {
+			return Quaternion.Euler(euler) * Vector3.forward;
+		}
+
+		/// <summary>
+		/// <exception cref="NotImplementedException">Warning, not implemented yet!</exception></summary>
+		public static Vector3 VectorToEuler(this Vector3 vector) {
+			throw new NotImplementedException();
+		}
 	}
 }

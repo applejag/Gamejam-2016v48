@@ -6,6 +6,6 @@ namespace AppInfo {
 		public const string NAME = "Södertörn gamejam spel";
 		public const string AUTHOR = null;
 		public const string WEBSITE = null;
-		public static readonly Version VERSION = new Version(Version.Label.Prototype, 0, 0, 0);
+		public static readonly Version VERSION = new Version(Version.Label.Prototype, 1, 0, 0);
 	}
 }

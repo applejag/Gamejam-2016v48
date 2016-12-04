@@ -14,9 +14,12 @@ public class CharacterMovement : MonoBehaviour {
 	public bool grounded { get { return _ground.Count > 0; } }
 	private HashSet<Collider> _ground = new HashSet<Collider> ();
 
-	private Rigidbody body;
+	public Rigidbody body { get; private set; }
 	private Vector3? forward = null;
 
+	[System.NonSerialized]
+	public float angleDelta;
+	
 	void Awake() {
 		body = GetComponent<Rigidbody> ();
 	}
@@ -74,10 +77,10 @@ public class CharacterMovement : MonoBehaviour {
 		if (forward.HasValue) {
 			float current = transform.eulerAngles.y;
 			float target = forward.Value.zx ().ToDegrees();
-			body.rotation = (Quaternion.Euler(0,
-				Mathf.MoveTowardsAngle(current, target, turnSpeed * Time.fixedDeltaTime),
-			0));
-			
+			float newAngle = Mathf.MoveTowardsAngle(current, target, turnSpeed * Time.fixedDeltaTime);
+			body.rotation = Quaternion.Euler(0, newAngle, 0);
+			angleDelta =- newAngle + current;
+
 			forward = null;
 		}
 	}
