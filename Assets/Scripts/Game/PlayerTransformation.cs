@@ -12,6 +12,7 @@ public class PlayerTransformation : MonoBehaviour {
 	public float moveSpeed = 3500;
 	public float mouseXSpeed = 4;
 	public float mouseYSpeed = -3;
+	public float moveAnimMultiplier = 1;
 
 	public enum Form {
 		Mus = 1,

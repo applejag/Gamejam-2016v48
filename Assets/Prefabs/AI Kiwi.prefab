@@ -993,7 +993,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000013962654570}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 84, y: -2.23, z: 113.5}
+  m_LocalPosition: {x: 110.82, y: -2.3480988, z: 429.42035}
   m_LocalScale: {x: 0.512934, y: 0.51293415, z: 0.51293415}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
@@ -1049,6 +1049,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   distanceThreshhold: 2
   anim: {fileID: 95000012468996312}
+  moveAnimMultiplier: 0.115
   vizualize: 1
 --- !u!114 &114000012006165532
 MonoBehaviour:

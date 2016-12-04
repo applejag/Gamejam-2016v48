@@ -7,6 +7,7 @@ public class PedestrianAI : MonoBehaviour {
 	
 	public float distanceThreshhold = 2;
 	public Animator anim;
+	public float moveAnimMultiplier = 1;
 
 	private CharacterMovement character;
 	private PathfinderBuilder.PathPoint targetPathPoint;
@@ -45,7 +46,7 @@ public class PedestrianAI : MonoBehaviour {
 				sleep = Random.Range(-3, 4);
 			}
 
-			anim.SetFloat("Speed", character.body.velocity.xz().magnitude);
+			anim.SetFloat("Speed", character.body.velocity.xz().magnitude * moveAnimMultiplier);
 		}
 	}
 

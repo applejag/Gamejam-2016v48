@@ -10,7 +10,7 @@ namespace ExtensionMethods {
 		public static Vector2 WorldToCanvasPoint(this Camera cam, Vector3 position) {
 			var viewportPos = cam.WorldToViewportPoint(position);
 
-			var canvasRect = GamePresets.canvasRect;
+			var canvasRect = GameGlobals.canvasRect;
 			viewportPos.x *= canvasRect.sizeDelta.x;
 			viewportPos.y *= canvasRect.sizeDelta.y;
 

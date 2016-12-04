@@ -13,6 +13,7 @@ public class PlayerController : MonoBehaviour {
 	public float mouseXSpeed = 1;
 	public float mouseYSpeed = 1;
 	public float mouseIdleAfter = 2;
+	public float moveAnimMultiplier = 1;
 
 	public bool transforming { get; private set; }
 
@@ -73,7 +74,7 @@ public class PlayerController : MonoBehaviour {
 		// Tell animator
 		if (current != null && current.anim != null) {
 
-			current.anim.SetFloat("Speed", character.body.velocity.xz().magnitude);
+			current.anim.SetFloat("Speed", character.body.velocity.xz().magnitude * moveAnimMultiplier);
 			current.anim.SetBool("Midair", !character.grounded);
 			current.anim.SetBool("Walking", isMoving);
 
@@ -109,6 +110,7 @@ public class PlayerController : MonoBehaviour {
 		character.jumpForce = Mathf.Lerp(character.jumpForce, current.jumpForce, t);
 		mouseXSpeed = Mathf.Lerp(mouseXSpeed, current.mouseXSpeed, t);
 		mouseYSpeed = Mathf.Lerp(mouseYSpeed, current.mouseYSpeed, t);
+		moveAnimMultiplier = Mathf.Lerp(moveAnimMultiplier, current.moveAnimMultiplier, t);
 	}
 
 	void TransformComplete() {

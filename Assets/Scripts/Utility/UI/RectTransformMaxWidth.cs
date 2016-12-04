@@ -14,7 +14,7 @@ public class RectTransformMaxWidth : MonoBehaviour {
 
 	void Update () {
 		Vector2 size = rect.sizeDelta;
-		size.x = Mathf.Min(width, GamePresets.canvasRect.sizeDelta.x);
+		size.x = Mathf.Min(width, GameGlobals.canvasRect.sizeDelta.x);
 		rect.sizeDelta = size;
 	}
 }
