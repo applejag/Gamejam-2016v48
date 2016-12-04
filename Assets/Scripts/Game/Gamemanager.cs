@@ -28,7 +28,7 @@ public class Gamemanager : MonoBehaviour {
     }
     public void Begingame()
     {
-        SceneManager.LoadScene("tmp");
+        SceneManager.LoadScene("game");
     }
     public void Creditstrue ()
     {
