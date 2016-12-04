@@ -22,7 +22,7 @@ public class PlayerController : MonoBehaviour {
 	private float _turnAutoMoveSpeed;
 	private float _mouseIdleTime;
 
-	public PlayerTransformation current;
+	public PlayerTransformation current { get; private set; }
 	private List<PlayerTransformation> allStates = new List<PlayerTransformation>();
 
 	void Awake() {
