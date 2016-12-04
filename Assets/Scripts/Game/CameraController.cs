@@ -6,7 +6,6 @@ public class CameraController : MonoBehaviour {
 
 	[Range(-10,90)]
 	public float angle = 45;
-	public float angleOffset;
 	public float yOffset = 1;
 	public float turnLerpSpeed = 5;
 	public float tiltLerpSpeed = 2;
@@ -14,6 +13,7 @@ public class CameraController : MonoBehaviour {
 	[System.NonSerialized]
 	[Header("Raycasting")]
 	public float targetDist = 10;
+	public float distMultiplier = 1;
 	[Range(0,1)]
 	public float hitExtraMult = .5f;
 	public LayerMask raycastLayer;
@@ -29,6 +29,7 @@ public class CameraController : MonoBehaviour {
 	public Vector3 right { get { return (planeAngle+90).FromDegrees().yzx(0); } }
 
 	public Vector3 pivotPos { get { return transform.position + Vector3.up * currYOffset; } }
+	public float targetPlaneAngle { get; set; }
 
 	void Start() {
 		if (Camera.main == null) {
@@ -47,24 +48,22 @@ public class CameraController : MonoBehaviour {
 		}
 
 		// First calculate angles
-		angleOffset = Mathf.MoveTowardsAngle(angleOffset, 0, autoTurnMoveSpeed * Time.deltaTime);
-		float targetAngle = transform.eulerAngles.y + angleOffset;
-		planeAngle = Mathf.LerpAngle (planeAngle, targetAngle, turnLerpSpeed * Time.deltaTime);
-		tiltAngle = Mathf.LerpAngle(tiltAngle, angle, tiltLerpSpeed * Time.deltaTime);
+		planeAngle = Mathf.LerpAngle (planeAngle, targetPlaneAngle, turnLerpSpeed * Time.deltaTime) % 360;
+		tiltAngle = Mathf.LerpAngle(tiltAngle, angle, tiltLerpSpeed * Time.deltaTime) % 360;
 		Camera.main.transform.eulerAngles = new Vector3(tiltAngle, planeAngle, 0);
 
 		// Then set the distance
-		dist = Mathf.Lerp(dist, targetDist, Time.deltaTime);
+		dist = Mathf.Lerp(dist, targetDist * distMultiplier, Time.deltaTime);
 		var extra = hitExtraMult * Mathf.Clamp01(Mathf.InverseLerp(80, -10, tiltAngle));
 		currYOffset = Mathf.Lerp(currYOffset, yOffset, Time.deltaTime);
 
 		// Lastly raycastin'
 		RaycastHit hit;
 		Ray ray = new Ray(pivotPos, -Camera.main.transform.forward);
-		if (Physics.Raycast(ray, out hit, targetDist * (1+extra), raycastLayer)) {
-			Camera.main.transform.position = hit.point - ray.direction * extra * targetDist;
+		if (Physics.Raycast(ray, out hit, targetDist * (1+extra) * distMultiplier, raycastLayer)) {
+			Camera.main.transform.position = hit.point - ray.direction * extra * targetDist * distMultiplier;
 		} else {
-			Camera.main.transform.position = pivotPos - Camera.main.transform.forward * targetDist;
+			Camera.main.transform.position = pivotPos - Camera.main.transform.forward * targetDist * distMultiplier;
 		}
 
 	}

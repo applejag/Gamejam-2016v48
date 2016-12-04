@@ -2,6 +2,7 @@
 using System.Collections;
 using ExtensionMethods;
 using System;
+using System.Collections.Generic;
 
 [RequireComponent(typeof(CharacterMovement))]
 [RequireComponent(typeof(CameraController))]
@@ -12,7 +13,6 @@ public class PlayerController : MonoBehaviour {
 	public float mouseXSpeed = 1;
 	public float mouseYSpeed = 1;
 	public float mouseIdleAfter = 2;
-	public Form currentForm = Form.Kiwi;
 
 	public bool transforming { get; private set; }
 
@@ -22,30 +22,34 @@ public class PlayerController : MonoBehaviour {
 	private float _turnAutoMoveSpeed;
 	private float _mouseIdleTime;
 
+	public PlayerTransformation current;
+	private List<PlayerTransformation> allStates = new List<PlayerTransformation>();
+
 	void Awake() {
 		character = GetComponent<CharacterMovement> ();
 		_cam = GetComponent<CameraController>();
 		_turnAutoMoveSpeed = _cam.autoTurnMoveSpeed;
 		anim = GetComponent<Animator>();
+		allStates.AddRange(GetComponentsInChildren<PlayerTransformation>());
 	}
 
 	void Start() {
-		GotoState(currentForm);
+		GotoState(current);
 	}
 
 	void Update() {
 		Vector3 axis = _cam.forward * Input.GetAxis("Vertical")
 				+ _cam.right * Input.GetAxis("Horizontal");
+		bool isMoving = axis.magnitude > float.Epsilon;
 
 		// Move player
-		if (axis.magnitude > float.Epsilon)
+		if (isMoving)
 			character.Move (axis.normalized);
 
 		// Add mouse input to angles
 		Vector2 mouse = new Vector2(Input.GetAxis("Mouse horizontal"), Input.GetAxis("Mouse vertical"));
 		_cam.angle = Mathf.Clamp(_cam.angle + mouse.y * Time.deltaTime * mouseYSpeed, -10, 90);
-		_cam.angleOffset += mouse.x * Time.deltaTime * mouseXSpeed + character.angleDelta;
-		_cam.angleOffset %= 360;
+		_cam.targetPlaneAngle += mouse.x * Time.deltaTime * mouseXSpeed;// + character.angleDelta;
 		character.angleDelta = 0;
 		_cam.targetDist = Mathf.Clamp(_cam.targetDist - Input.mouseScrollDelta.y, 5, 25);
 
@@ -61,9 +65,18 @@ public class PlayerController : MonoBehaviour {
 			character.Jump();
 		}
 
-		foreach (int x in Enum.GetValues(typeof(Form))) {
-			if (Input.GetKeyDown((KeyCode) (48 + x)))
-				GotoState((Form)x);
+		foreach (var state in allStates) {
+			if (Input.GetKeyDown((KeyCode) (48 + (int)state.form)))
+				GotoState(state);
+		}
+
+		// Tell animator
+		if (current != null && current.anim != null) {
+
+			current.anim.SetFloat("Speed", character.body.velocity.xz().magnitude);
+			current.anim.SetBool("Midair", !character.grounded);
+			current.anim.SetBool("Walking", isMoving);
+
 		}
 	}
 
@@ -72,22 +85,22 @@ public class PlayerController : MonoBehaviour {
 		transform.eulerAngles = Vector3.up * transform.eulerAngles.y;
 	}
 
-	void GotoState(Form form) {
-		if (!transforming && currentForm != form) {
+	void GotoState(PlayerTransformation state) {
+		if (!transforming && current != state) {
+			state.gameObject.SetActive(true);
 			transforming = true;
-			anim.SetTrigger("GotoState" + (int)form);
-			currentForm = form;
+			anim.SetTrigger("GotoState" + (int)state.form);
+			current = state;
 		}
 	}
 	
 	void TransformComplete() {
 		transforming = false;
-	}
 
-	public enum Form {
-		Mus = 1,
-		Kiwi,
-		Elephant
+		// Disable all others
+		foreach (var state in allStates)
+			if (state != current)
+				state.gameObject.SetActive(false);
 	}
 
 }
