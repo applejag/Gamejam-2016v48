@@ -11,6 +11,12 @@ public class Gamemanager : MonoBehaviour {
     public Button returnbutton;
     public Image backgroundSource;
     Image returnimage;
+    // Highlight textures
+    public Sprite[] highlights = new Sprite[4];
+    // Normal textures
+    public Sprite[] normal = new Sprite[4];
+    
+
     void Awake()
     {
         // predefines all the menue items in order to being able to find and turn them off in the below functions
@@ -18,6 +24,7 @@ public class Gamemanager : MonoBehaviour {
         backgroundSource = GameObject.Find("Menu").GetComponent<Image>();
         returnimage = GameObject.Find("Close").GetComponent<Image>();
         
+
     }
     public void Begingame()
     {
@@ -46,4 +53,47 @@ public class Gamemanager : MonoBehaviour {
         // quits the application
         Application.Quit();
     }
+    // following are called through pointer enter events
+    public void StartHighlight()
+    {
+        Image mystart = GameObject.Find("Start").GetComponent<Image>();
+        mystart.sprite = highlights[0]; 
+    }
+    public void CreditHighlight()
+    {
+        Image mycredit = GameObject.Find("Credits").GetComponent<Image>();
+        mycredit.sprite = highlights[1];
+    }
+    public void QuitHighlight()
+    {
+        Image myQuit = GameObject.Find("Quit").GetComponent<Image>();
+        myQuit.sprite = highlights[2];
+    }
+    public void CloseHighlight()
+    {
+        Image myClose = GameObject.Find("Close").GetComponent<Image>();
+        myClose.sprite = highlights[3];
+    }
+    // following are called on pointer exit events
+    public void Startreset()
+    {
+        Image mystart = GameObject.Find("Start").GetComponent<Image>();
+        mystart.sprite = normal[0];
+    }
+    public void Creditreset()
+    {
+        Image mycredit = GameObject.Find("Credits").GetComponent<Image>();
+        mycredit.sprite = normal[1];
+    }
+    public void Quitreset()
+    {
+        Image myQuit = GameObject.Find("Quit").GetComponent<Image>();
+        myQuit.sprite = normal[2];
+    }
+    public void Closereset()
+    {
+        Image myClose = GameObject.Find("Close").GetComponent<Image>();
+        myClose.sprite = normal[3];
+    }
+
 }
