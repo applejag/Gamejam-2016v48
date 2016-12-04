@@ -22,7 +22,7 @@ public class PlayerController : MonoBehaviour {
 	private float _turnAutoMoveSpeed;
 	private float _mouseIdleTime;
 
-	public PlayerTransformation current { get; private set; }
+	public PlayerTransformation current;
 	private List<PlayerTransformation> allStates = new List<PlayerTransformation>();
 
 	void Awake() {
@@ -78,6 +78,12 @@ public class PlayerController : MonoBehaviour {
 			current.anim.SetBool("Walking", isMoving);
 
 		}
+
+		// Transforming transition
+		if (transforming) {
+			transformTime += Time.deltaTime * 0.5f;
+			Transforming(transformTime);
+		}
 	}
 
 	void FixedUpdate() {
@@ -85,15 +91,26 @@ public class PlayerController : MonoBehaviour {
 		transform.eulerAngles = Vector3.up * transform.eulerAngles.y;
 	}
 
-	void GotoState(PlayerTransformation state) {
-		if (!transforming && current != state) {
+	float transformTime = 0;
+	void GotoState(PlayerTransformation state, bool force = false) {
+		if (!transforming && (current != state || force)) {
 			state.gameObject.SetActive(true);
 			transforming = true;
 			anim.SetTrigger("GotoState" + (int)state.form);
 			current = state;
+			transformTime = 0;
 		}
 	}
 	
+	void Transforming(float t) {
+		_cam.distMultiplier = Mathf.Lerp(_cam.distMultiplier, current.distMultiplier, t);
+		_cam.yOffset = Mathf.Lerp(_cam.yOffset, current.yOffset, t);
+		character.moveSpeed = Mathf.Lerp(character.moveSpeed, current.moveSpeed, t);
+		character.jumpForce = Mathf.Lerp(character.jumpForce, current.jumpForce, t);
+		mouseXSpeed = Mathf.Lerp(mouseXSpeed, current.mouseXSpeed, t);
+		mouseYSpeed = Mathf.Lerp(mouseYSpeed, current.mouseYSpeed, t);
+	}
+
 	void TransformComplete() {
 		transforming = false;
 
@@ -101,6 +118,8 @@ public class PlayerController : MonoBehaviour {
 		foreach (var state in allStates)
 			if (state != current)
 				state.gameObject.SetActive(false);
+
+		Transforming(1);
 	}
 
 }

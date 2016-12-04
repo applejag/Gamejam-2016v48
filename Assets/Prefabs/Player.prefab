@@ -738,7 +738,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000014046057622}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 63.1, y: 100, z: 55}
+  m_LocalPosition: {x: 63.1, y: -0.24, z: 55}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
@@ -1234,7 +1234,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 1
   m_Constraints: 80
-  m_CollisionDetection: 0
+  m_CollisionDetection: 2
 --- !u!95 &95000012219402834
 Animator:
   serializedVersion: 3
@@ -1333,6 +1333,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   form: 2
   anim: {fileID: 95000012274829432}
+  distMultiplier: 2
+  yOffset: 6
+  jumpForce: 50
+  moveSpeed: 4000
+  mouseXSpeed: 3
+  mouseYSpeed: -2
 --- !u!114 &114000010924414854
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1346,6 +1352,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   form: 1
   anim: {fileID: 0}
+  distMultiplier: 0.5
+  yOffset: 1
+  jumpForce: 20
+  moveSpeed: 6000
+  mouseXSpeed: 4
+  mouseYSpeed: -3
 --- !u!114 &114000011572490376
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1388,6 +1400,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   form: 3
   anim: {fileID: 0}
+  distMultiplier: 1
+  yOffset: 4
+  jumpForce: 20
+  moveSpeed: 3500
+  mouseXSpeed: 4
+  mouseYSpeed: -3
 --- !u!114 &114000014020172884
 MonoBehaviour:
   m_ObjectHideFlags: 1
