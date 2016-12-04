@@ -6,5 +6,11 @@ AnimatorOverrideController:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: Player-mouse
-  m_Controller: {fileID: 0}
-  m_Clips: []
+  m_Controller: {fileID: 9100000, guid: 66807bf3be71a8f4a8cbe9baa9a0a1aa, type: 2}
+  m_Clips:
+  - m_OriginalClip: {fileID: 7400000, guid: dd73513ca8388fc48a61e6accc34ee5b, type: 3}
+    m_OverrideClip: {fileID: 7400000, guid: dd73513ca8388fc48a61e6accc34ee5b, type: 3}
+  - m_OriginalClip: {fileID: 7400000, guid: 99517770e9805df4d9ef35e0d91f5d17, type: 3}
+    m_OverrideClip: {fileID: 7400000, guid: 99517770e9805df4d9ef35e0d91f5d17, type: 3}
+  - m_OriginalClip: {fileID: 7400000, guid: 76be1ea306ccffd4abd2c8518e3dd279, type: 3}
+    m_OverrideClip: {fileID: 7400000, guid: 8c38153c70b1a6b44a2ed7121f45a1f7, type: 3}
